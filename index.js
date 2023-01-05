@@ -145,3 +145,11 @@ const writteFile = fileContent => {
         });
     });
 };
+
+//Promt Questions & store users inputs
+const init = () => {
+    return inquirer.prompt(questions)
+    .then(readmeInfo => {
+        return readmeInfo;
+    })
+}
