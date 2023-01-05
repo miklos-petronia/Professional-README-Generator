@@ -153,3 +153,22 @@ const init = () => {
         return readmeInfo;
     })
 }
+
+//Application to initialization
+init()
+.then(readmeInfo => {
+    console.log(readmeInfo);
+    return createMarkdown(readmeInfo);
+})
+.then(pageMD => {
+    return writteFile(pageMD);
+})
+.then(pageMD => {
+    return writteFile(pageMD);
+})
+.then(writeFileFeedback => {
+    console.log(writeFileFeedback.message);    
+})
+.catch(err => {
+    console.log(err);
+})
