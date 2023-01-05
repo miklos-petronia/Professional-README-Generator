@@ -4,4 +4,58 @@ const fs = require('fs');
 const createMarkdown = require('./utils/generateMarkdown.js');
 
 // Question for user suggestions; Array
-const questions = []
+const questions = [
+{
+    type:'input',
+    name: 'title',
+    messege: 'What is your project title'?
+    validate: titleInput => {
+        if (titleInput) {
+            return true;
+        } else {
+            console.log('Please enter your project name');
+            return false;
+        }
+    }
+},
+{
+    type: 'input',
+    name: 'github user name',
+    messege:'Please provide your Github username',
+    validate: inputGithub => {
+        if (inputGithub) {
+            return true;
+        } else {
+            console.log('Enter Github username');
+            return false;
+        }
+    }
+},
+{
+    type: 'input',
+    name: 'email',
+    messege: 'Please enter your email adress',
+    validate: (inputGithub) => {
+        if (inputGithub) {
+            return true;
+        } else {
+            console.log('please provide your email adress');
+            return false;
+        }
+    }
+},
+{
+    type: 'input',
+    name: 'kind of project',
+    message: 'Please provide the details of your project and what kind of problem will it solve'?
+    validate: inputWhat => {
+        if (inputWhat) {
+            return true;
+        } else {
+            console.log(' Please enter the details of your project');
+            return false;
+        }
+    }
+},
+
+]
