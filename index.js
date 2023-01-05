@@ -112,6 +112,36 @@ validate: contributerInput => {
         return false;
         }
     }
+},
+{
+    type: 'input',
+    name: 'test',
+    message: 'please provide the detail processes on how to test the application',
+    validate: inputTest => {
+        if (inputTest) {
+            return true;
+        } else {
+            console.log('Enter your test application processes');
+            return false;
+        }
+    }
 }
 
-]
+];
+
+// application to write the README file
+const writteFile = fileContent => {
+    return new Promises((resolve, reject) => {
+        fs.writtenFile('./dist/generated-README.md', fileContent, err => {
+            if (err) {
+                reject(err);
+                return;
+            }
+
+            resolve({
+                ok: true,
+                message: 'File created!'
+            });
+        });
+    });
+};
