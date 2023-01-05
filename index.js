@@ -46,8 +46,8 @@ const questions = [
 },
 {
     type: 'input',
-    name: 'kind of project',
-    message: 'Please provide the details of your project and what kind of problem will it solve'?
+    name: 'what',
+    message: 'Please provide the details of your project and what kind of problem will it solve',
     validate: inputWhat => {
         if (inputWhat) {
             return true;
@@ -57,5 +57,61 @@ const questions = [
         }
     }
 },
+{
+    type: 'input',
+    name: 'why',
+    message: 'Why have you developed this project ?',
+    validate: inputWhy => {
+        if (inputWhy) {
+            return true;
+        } else {
+            console.log('Please enter why you have developed this project');
+            return false;
+        }
+
+    }
+
+},
+{
+    type: 'input',
+    name: 'installation',
+    message: 'Please inlist the installations details for your project.',
+    validate: inputInstall => {
+        if (inputInstall) {
+        return true; 
+    } else {
+        console.log('Please provide your installation requirements');
+        return false;
+        }
+    }
+},
+{
+    type: 'list',
+    name: 'license',
+    message: 'What type of licence will you be using for your project?',
+    choice: ['mit', 'agpl', 'gpl', 'no license']
+},
+{
+    type: 'input',
+    name: 'contribute',
+    message: 'Please provide information guidelines for contribution',
+    when: ({confirmContribution}) => {
+        if (confirmContribution) {
+            return true;
+        } else { 
+            return false;
+        }
+    }
+},
+{
+validate: contributerInput => {
+    if (contributerInput) {
+        return true;
+    } else {
+        console.log('Enter contributers processes');
+        return false;
+        }
+    }
+}
 
 ]
