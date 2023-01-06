@@ -11,7 +11,6 @@ Click the repository link under. Select and copy the directory of your choice. O
 After the installation is done, run this code: node index.js in the terminal. Answers the question and after it is complete, you will see a console log illustrating your answers to your questions, a message will say ‘File is created’. You would see your file in dist folder called ‘generatedREADME’. It is generated in a mark-down syntax to copy and paste the code into the project.
 
 the usage is like the following: 
-```md
 GIVEN a command-line application that accepts user input
 When I am prompted for information about my application repository
 Then a high-quality, professional README.md is generated with the title of my project and sections entitled Description, Table of Contents, Installation, Usage, License, Contributing, Tests, and Questions
@@ -27,6 +26,8 @@ When I enter my email address
 Then this is added to the section of the README entitled Questions, with instructions on how to reach me with additional questions
 When I click on the links in the Table of Contents
 Then I am taken to the corresponding section of the README
+
+
 
 ## Credits
 mjgiannelli & JohnBanas and some YouTube videos
