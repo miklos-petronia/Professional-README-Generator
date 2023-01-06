@@ -1,121 +1,193 @@
 // Collection needed for this APP
 const inquirer = require('inquirer');
 const fs = require('fs');
-const {message} = require('statuses');
-
-//Inquirer to create questions
-inquirer.prompt (
-    [
-        {
-        Type: 'input',
-        message: 'What is your project title?',
+const createMarkdown = require('./utils/createMarkdown.js');
+// Question for user suggestions; Array
+const questions = [
+    {
+        type: 'input',
         name: 'title',
-        validate: (value)=>{ if (value){return true} else {return'I need a value to continue'}},
-        },
-        {
-            Type: 'input',
-            message: 'Please provide your Github username',
-            name: 'github user name',
-            validate: (value) => { if (value) { return true } else { return 'I need a value to continue' } },
-
-        },
-
-        {
-            Type: 'input',
-            message: 'Please enter your email adress',
-            name: 'email',
-            validate: (value) => { if (value) { return true } else { return 'I need a value to continue' } },
-
-        },
-        {
-            Type: 'input',
-            message: 'Please provide the details of your project and what kind of problem will it solve',
-            name: 'what',
-            validate: (value) => { if (value) { return true } else { return 'I need a value to continue' } },
-
-        },
-        {
-            Type: 'input',
-            message: 'Why have you developed this project ?',
-            name: 'why',
-            validate: (value) => { if (value) { return true } else { return 'I need a value to continue' } },
-
-        },
-        {
-            Type: 'input',
-            message: 'Please inlist the installations details for your project.',
-            name: 'installation',
-            validate: (value) => { if (value) { return true } else { return 'I need a value to continue' } },
-
-        },
-        {
-            type: 'list',
-            name: 'license',
-            message: 'What type of licence will you be using for your project?',
-            choice: ['mit', 'agpl', 'gpl', 'no license'],
-            validate: (value) => { if (value) { return true } else { return 'I need a value to continue' } },
-        },
-        {
-            type: 'list',
-            name: 'contribute',
-            message: 'Please provide information guidelines for contribution',
-            validate: (value) => { if (value) { return true } else { return 'I need a value to continue' } },
-        },
-        {
-            type: 'input',
-            name: 'test',
-            message: 'please provide the detail processes on how to test the application',
-            validate: (value) => { if (value) { return true } else { return 'I need a value to continue' } },
+        message: 'What is your project title?',
+        validate: titleInput => {
+            if (titleInput) {
+                return true;
+            } else {
+                console.log('Please enter your project name');
+                return false;
+            }
         }
-
-    ]
-    
-).then({
-    title, 
-    installation,
-    instruction,
-    credit,
-    license,
-    git,
-    email,
-    contribution,
-    usage, 
-})={
-    //template to be used
-    const template =`# ${title}
-    *[Installation](#installation)
-    *[Usage](#usage)
-    *[Contribution](#contribution)
-    *[License](#licence)
-    #Instalation
-    ${installation} 
-    ##Usage
-    ${usage}
-    ##Contribution
-    ${contribution}
-    ### instructions
-    ${instructions}
-    ## Credits
-    ${credits}
-    ##License
-    ${license}
-
-    #Contact
-    *GitHub :${Git}
-    *Linkdin :${Linkdin}
-    *E-mail :${email}`,
-
-//Function to create readme using fs
-createNewFile(title,template);
-},
-
-//develop create new file function
-function createNewFile(fileName,data){
-    //fs
-    fs.writeFile(`${fileName.toLowerCase().split('').join('')}.nd`,data,(err)=>{
-        if(err){
-            console.log(err)
+    },
+    {
+        type: 'input',
+        name: 'github user name',
+        message: 'Please provide your Github username?',
+        validate: githubInput => {
+            if (githubInput) {
+                return true;
+            } else {
+                console.log('Please enter your GitHub username!');
+                return false;
+            }
         }
-        console.log('Your README had been generated');
-})
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Please enter your email adress',
+        validate: githubInput => {
+            if (githubInput) {
+                return true;
+            } else {
+                console.log('please provide your email adress');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'what',
+        message: 'Please provide the details of your project and what kind of problem will it solve',
+        validate: whatInput => {
+            if (whatInput) {
+                return true;
+            } else {
+                console.log('Please enter the details of your project');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'why',
+        message: 'Why have you developed this project ?',
+        validate: whyInput => {
+            if (whyInput) {
+                return true;
+            } else {
+                console.log('Please enter why you have developed this project');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'how',
+        message: 'How would a person use this?',
+        validate: howInput => {
+            if (howInput) {
+                return true;
+            } else {
+                console.log('Please enter the details of your project');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'installation',
+        message: 'Please inlist the installations details for your project.',
+        validate: installInput => {
+            if (installInput) {
+                return true;
+            } else {
+                console.log('Please provide your installation requirements');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'usage',
+        message: 'Provide a list of instructions and suggestions for the usage.',
+        validate: usageInput => {
+            if (usageInput) {
+                return true;
+            } else {
+                console.log('Please enter your your list of instructions');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'list',
+        name: 'license',
+        message: 'What type of licence will you be using for your project?',
+        choices: ['mit', 'apache', 'agpl', 'no license']
+    },
+    {
+        type: 'confirm',
+        name: 'confirmContributers',
+        message: 'Would you like to allow other creators to make contribution?',
+        default: true
+    },
+    {
+        type: 'input',
+        name: 'contribute',
+        message: 'Please inlist guidelines for contributors.',
+        when: ({ confirmContributers }) => {
+            if (confirmContributers) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        validate: contributerInput => {
+            if (contributerInput) {
+                return true;
+            } else {
+                console.log('Enter contributor processes');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'test',
+        message: 'Please inlist instructions to test the application.',
+        validate: testInput => {
+            if (testInput) {
+                return true;
+            } else {
+                console.log('Please enter your use test processes!');
+                return false;
+            }
+        }
+    }
+];
+// function to write README file
+const writeFile = fileContent => {
+    return new Promise((resolve, reject) => {
+        fs.writeFile('./dist/generated-README.md', fileContent, err => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve({
+                ok: true,
+                message: 'File created!'
+            });
+        });
+    });
+};
+// function to prompt questions and store user inputs
+const init = () => {
+    return inquirer.prompt(questions)
+        .then(readmeData => {
+            return readmeData;
+        })
 }
+// Function call to initialize app
+init()
+    .then(readmeData => {
+        console.log(readmeData);
+        return createMarkdown(readmeData);
+    })
+    .then(pageMD => {
+        return writeFile(pageMD);
+    })
+    .then(writeFileResponse => {
+        console.log(writeFileResponse.message);
+    })
+    .catch(err => {
+        console.log(err);
+    })
