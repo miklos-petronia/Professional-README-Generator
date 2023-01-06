@@ -7,9 +7,10 @@ The problem is that most README projects tends to be overlooked. It might be due
 ## Installation
 Click the repository link under. Select and copy the directory of your choice. Open the file in the visual studio code. Open the terminal and work under professional readme generator. You will be ready to start the application.  
 
-## Usage 
+## Usage 1
 After the installation is done, run this code: node index.js in the terminal. Answers the question and after it is complete, you will see a console log illustrating your answers to your questions, a message will say ‘File is created’. You would see your file in dist folder called ‘generatedREADME’. It is generated in a mark-down syntax to copy and paste the code into the project.
 
+## Usage 2
 the usage is like the following: 
 GIVEN a command-line application that accepts user input
 When I am prompted for information about my application repository
