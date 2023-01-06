@@ -27,8 +27,6 @@ Then this is added to the section of the README entitled Questions, with instruc
 When I click on the links in the Table of Contents
 Then I am taken to the corresponding section of the README
 
-
-
 ## Credits
 mjgiannelli & JohnBanas and some YouTube videos
 
